@@ -8,10 +8,9 @@ console.log(positiveSum([-1, 2, 3, 4, -5]), 9);
 
 // !===================================================
 const myLanguages = results =>
-	Object.entries(results)
-		.filter(arr => arr[1] >= 60)
-		.sort((a, b) => a[1] < b[1])
-		.map(arr => arr[0]);
+	Object.keys(results)
+		.filter(key => results[key] >= 60)
+		.sort((a, b) => results[a] - results[b]);
 
 console.log(myLanguages({ Java: 10, Ruby: 80, Python: 65 }));
 console.log(myLanguages({ Hindi: 60, Greek: 71, Dutch: 93 }));

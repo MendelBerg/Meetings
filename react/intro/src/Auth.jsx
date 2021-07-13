@@ -15,7 +15,7 @@ class Auth extends Component {
 		isLogging: false,
 	};
 
-	onLogin() {
+	onLogin = () => {
 		this.setState({
 			isLogging: true,
 		});
@@ -26,18 +26,23 @@ class Auth extends Component {
 				isLogging: false,
 			});
 		}, 2000);
-	}
+	};
 
-	onLogout() {}
+	onLogout = () => {
+		this.setState({
+			isLoggedIn: false,
+		});
+	};
 
 	render() {
-		return (
-			<>
-				<Login onLogin={this.onLogin} />
-				<Logout onLogout={this.onLogout} />
-				{/* <Spinner size={20} /> */}
-			</>
-		);
+		const { isLogging, isLoggedIn } = this.state;
+		if (isLogging) {
+			return <Spinner size={50} />;
+		}
+		if (isLoggedIn) {
+			return <Logout onLogout={this.onLogout} />;
+		}
+		return <Login onLogin={this.onLogin} />;
 	}
 }
 
